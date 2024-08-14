@@ -1,10 +1,12 @@
 $cell-size: 100px;
 $player-size: 0.8 * $cell-size;
 $shift: ($cell-size - $player-size) / 2;
+$col-count: 3;
+$row-count: 3;
 
 .game {
   position: relative;
-  width: 3 * $cell-size;
+  width: $col-count * $cell-size;
   border: 2px solid #000;
   
   &__field {
@@ -28,28 +30,16 @@ $shift: ($cell-size - $player-size) / 2;
     width: $player-size;
     border-radius: 50%;
 
-    &--x--1 {
-      left: $shift;
+    @for $column from 1 through $col-count {
+      &--x--#{$column} {
+        left: ($column - 1) * $cell-size + $shift;
+      }
     }
 
-    &--x--2 {
-      left: $cell-size + $shift;
-    }
-
-    &--x--3 {
-      left: 2 * $cell-size + $shift;
-    }
-
-    &--y--1 {
-      top: $shift;
-    }
-
-    &--y--2 {
-      top: $cell-size + $shift;
-    }
-
-    &--y--3 {
-      top: 2 * $cell-size + $shift;
+    @for $row from 1 through $row-count {
+      &--y--#{$row} {
+        top: ($row - 1) * $cell-size + $shift;
+      }
     }
     
     &--color--red {
