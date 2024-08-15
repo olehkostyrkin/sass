@@ -42,19 +42,15 @@ $row-count: 3;
       }
     }
     
-    &--color--red {
-      background-color: red;
-    }
+    $colors: 
+      red #f00, 
+      green #080, 
+      blue #00f;
 
-    &--color--green {
-      background-color: green;
-    }
-
-    &--color--blue {
-      background-color: blue;
+    @each $name, $color in $colors {
+      &--color--#{$name} {
+        background-color: $color;
+      }
     }
   }
 }
-
-
-
